@@ -628,3 +628,9 @@ variable "module_depends_on" {
   description = "(Optional) Define resources this module indirectly depends_on."
   default     = []
 }
+
+variable "allow_update_branch" {
+  description = "(Optional) Set to true to always suggest updating pull request branches."
+  type        = bool
+  default     = false
+}

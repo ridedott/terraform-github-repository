@@ -25,6 +25,7 @@ locals {
   default_branch         = var.default_branch == null ? lookup(var.defaults, "default_branch", null) : var.default_branch
   standard_topics        = var.topics == null ? lookup(var.defaults, "topics", []) : var.topics
   topics                 = concat(local.standard_topics, var.extra_topics)
+  allow_update_branch    = var.allow_update_branch
   template               = var.template == null ? [] : [var.template]
   issue_labels_create    = var.issue_labels_create == null ? lookup(var.defaults, "issue_labels_create", local.issue_labels_create_computed) : var.issue_labels_create
 
@@ -114,6 +115,7 @@ resource "github_repository" "repository" {
   license_template       = local.license_template
   archived               = var.archived
   topics                 = local.topics
+  allow_update_branch    = var.allow_update_branch
 
   archive_on_destroy   = var.archive_on_destroy
   vulnerability_alerts = local.vulnerability_alerts
